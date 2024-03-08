@@ -1,4 +1,5 @@
 import {useState} from "react";
+import axios from "axios";
 
  function SignUpPage() {
 
@@ -8,17 +9,26 @@ import {useState} from "react";
   const [languages, setLanguages] = useState('');
   const [github, setGithub] = useState('');
 
-  function signup(ev) {
+  async function signup(ev) {
     ev.preventDefault();
-    const response =  fetch('http://localhost:5137/signup', {
-      method: 'POST',
-      body: JSON.stringify({email,password,name,languages,github}),
-      headers: {'Content-Type':'application/json'},
-    });
-    if (response.status === 200) {
-      alert('signup successful');
-    } else {
-      alert('signup failed');
+
+    try {
+      const response = await axios.post('http://localhost:5137/signup', {
+        email,
+        password,
+        name,
+        languages,
+        github,
+      });
+
+      if (response.status === 200) {
+        alert('signup successful');
+      } else {
+        alert('signup failed');
+      }
+    } catch (error) {
+      console.error('Error during signup:', error);
+      alert('An error occurred during signup');
     }
   }
   return (
