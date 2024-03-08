@@ -13,7 +13,7 @@ import axios from "axios";
     ev.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5137/signup', {
+      const response = await axios.post('http://localhost:5005/auth/signup', {
         email,
         password,
         name,
