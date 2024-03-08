@@ -10,7 +10,7 @@ import {useState} from "react";
 
   function signup(ev) {
     ev.preventDefault();
-    const response =  fetch('http://localhost:5137/auth/signup', {
+    const response =  fetch('http://localhost:5137/signup', {
       method: 'POST',
       body: JSON.stringify({email,password,name,languages,github}),
       headers: {'Content-Type':'application/json'},

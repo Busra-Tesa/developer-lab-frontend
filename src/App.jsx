@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import PostPage from './pages/PostPage'
 import { BrowserRouter as Router } from "react-router-dom";
-
+import SignUpPage from './pages/SignUpPage';
 
 import { Route,Routes } from 'react-router-dom'
 
@@ -19,6 +19,7 @@ function App() {
       <Routes>
        
         <Route path="/post" element={<PostPage />} />
+        <Route path ="/signup" element={<SignUpPage/> }/>
       </Routes>
     </>
      
