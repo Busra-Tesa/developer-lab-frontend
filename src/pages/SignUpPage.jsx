@@ -21,7 +21,7 @@ import axios from "axios";
         github,
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert('signup successful');
       } else {
         alert('signup failed');
