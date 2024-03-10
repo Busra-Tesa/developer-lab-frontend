@@ -1,5 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
  function SignUpPage() {
 
@@ -8,6 +9,7 @@ import axios from "axios";
   const [name, setName] = useState('');
   const [languages, setLanguages] = useState('');
   const [github, setGithub] = useState('');
+  const navigate = useNavigate();
 
   async function signup(ev) {
     ev.preventDefault();
@@ -21,15 +23,18 @@ import axios from "axios";
         github,
       });
 
-      if (response.status === 201) {
-        alert('signup successful');
-      } else {
-        alert('signup failed');
-      }
+      // if (response.status === 201) {
+      //   alert('signup successful');
+      //   console.log("Sign up Worked");
+        
+      // } else {
+      //   alert('signup failed');
+      // }
     } catch (error) {
       console.error('Error during signup:', error);
       alert('An error occurred during signup');
     }
+    navigate("/login");
   }
   return (
     <form className="signup" onSubmit={signup}>
