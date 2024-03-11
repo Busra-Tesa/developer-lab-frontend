@@ -98,3 +98,69 @@
     .auth span a:hover {
       text-decoration: underline;
     }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    /* ... Diğer stiller ... */
+
+form.create-post {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form.create-post input,
+form.create-post textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form.create-post button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form.create-post button:hover {
+  background-color: #45a049;
+}
+
+/* ... Diğer stiller ... */

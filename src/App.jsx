@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage.jsx'
 
 import LoginPage from './pages/LoginPage';
 import PostDetails from './components/PostDetails.jsx'
-
+import CreatePost from './pages/CreatePost.jsx'
 import { Route,Routes } from 'react-router-dom'
 
 
@@ -31,6 +31,7 @@ function App() {
         <Route path ="/signup" element={<SignUpPage/> }/>
         <Route path="/post" element={<PostPage />} />
         <Route path="/post/:postId" element={<PostDetails />} />
+        <Route path="/create" element={<CreatePost />} />
       </Routes>
     </>
      
