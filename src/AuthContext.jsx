@@ -13,9 +13,9 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const res = await axios.post("http://localhost:5005/auth/login", inputs);
       setCurrentUser(res.data);
-      return res; // response'u döndür
+      return res; 
     } catch (err) {
-      throw err; // hatayı fırlat
+      throw err; 
     }
   };
 

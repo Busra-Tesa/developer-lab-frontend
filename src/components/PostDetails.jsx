@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 
 function PostDetails({ post }) {
+  if (!post) {
+    return null; 
+  }
   return (
     <div className='group relative w-full border border-teal-500 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[430px] transition-all'>
-      <Link to={`/post/${post.slug}`}>
+      <Link to={`/post/${post._id}`}>
         <img
           src={post.image}
           alt='post cover'
@@ -17,7 +20,7 @@ function PostDetails({ post }) {
         <span className='italic text-sm text-gray-600'>{post.date}</span>
         <p className='italic text-sm text-gray-600 line-clamp-2'>{post.content}</p>
         <Link
-          to={`/post/${post}`}
+          to={`/post/${post._id}`}
           className='z-10 group-hover:bottom-0 absolute bottom-[-200px] left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2'
         >
           Read article

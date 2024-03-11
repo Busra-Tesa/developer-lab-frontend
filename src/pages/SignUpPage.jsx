@@ -21,10 +21,8 @@ function SignUpPage() {
         password,
         name,
         languages,
-        github
-      }
-      );
-
+        github,
+      })
 
     } catch (error) {
       console.error('Error during signup:', error);
