@@ -7,6 +7,7 @@ import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage.jsx'
 import LoginPage from './pages/LoginPage';
 import PostDetails from './components/PostDetails.jsx'
+import CreatePost from './pages/CreatePost.jsx'
 import { Route,Routes } from 'react-router-dom'
 import DashboardPage from './pages/DashboardPage';
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />}>DashboardPage</Route>
         <Route path="/post/:postId" element={<PostDetails />} >PostDetails</Route>
         
+        <Route path="/create" element={<CreatePost />} />
       </Routes>
     </>
      
