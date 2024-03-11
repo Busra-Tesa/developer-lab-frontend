@@ -1,7 +1,7 @@
 
-import { useEffect, useState, useParams } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useParams } from 'react-router-dom';
 
 import PostDetails from '../components/PostDetails';
 import PostList from '../components/Postlist'; 
@@ -17,6 +17,11 @@ function PostPage() {
     const fetchPost = async () => {
       try {
         setLoading(true);
+        if (!postId) {
+            setLoading(false);
+            setError(true);
+            return;
+          }
 
         const res = await axios.get(`http://localhost:5005/post/${postId}`);
         const data = res.data;
@@ -44,10 +49,10 @@ function PostPage() {
         const res = await axios.get(`/api/post/getposts?limit=4`);
         const data = res.data;
 
-        if (!data || data.posts.length === 0) {
-          setError(true);
-          return;
-        }
+        if (!data || !data.posts || data.posts.length === 0) {
+            setError(true);
+            return;
+          }
 
         setRecentPosts(data.posts);
       };
