@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 
+
+
+
  function SignUpPage() {
 
   const [email, setEmail] = useState('');
@@ -22,6 +25,7 @@ import { NavLink } from "react-router-dom";
         password,
         name,
         languages,
+<<<<<<< Updated upstream
         github,
       });
 
@@ -32,6 +36,13 @@ import { NavLink } from "react-router-dom";
       // } else {
       //   alert('signup failed');
       // }
+=======
+        github
+      }
+      );
+
+      
+>>>>>>> Stashed changes
     } catch (error) {
       console.error('Error during signup:', error);
       alert('An error occurred during signup');
