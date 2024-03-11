@@ -1,13 +1,9 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-
-
-
-
- function SignUpPage() {
+function SignUpPage() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,24 +21,11 @@ import { NavLink } from "react-router-dom";
         password,
         name,
         languages,
-<<<<<<< Updated upstream
-        github,
-      });
-
-      // if (response.status === 201) {
-      //   alert('signup successful');
-      //   console.log("Sign up Worked");
-        
-      // } else {
-      //   alert('signup failed');
-      // }
-=======
         github
       }
       );
 
-      
->>>>>>> Stashed changes
+
     } catch (error) {
       console.error('Error during signup:', error);
       alert('An error occurred during signup');
@@ -50,42 +33,39 @@ import { NavLink } from "react-router-dom";
     navigate("/login");
   }
   return (
- <>
+    <>
 
-    <div>
-    <NavLink className="text-2xl text-violet-600 block mb-4 hover:text-purple">Home
+      <div>
+        <NavLink to="/" className="block py-2 pr-4 pl-3 text-black rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-black" aria-current="page">Home</NavLink>
+      </div>
 
-    </NavLink>
+      <form className="signup" onSubmit={signup}>
+        <h1>signup</h1>
 
-</div>
-    
-    <form className="signup" onSubmit={signup}>
-      <h1>signup</h1>
-      
-      <input type="text"
-             placeholder="email"
-             value={email}
-             onChange={ev => setEmail(ev.target.value)}/>
-      <input type="text"
-             placeholder="password"
-             value={password}
-             onChange={ev => setPassword(ev.target.value)}/>
         <input type="text"
-             placeholder="name"
-             value={name}
-             onChange={ev => setName(ev.target.value)}/>
-             <input type="text"
-             placeholder="languages"
-             value={languages}
-             onChange={ev => setLanguages(ev.target.value)}/>
-             <input type="text"
-             placeholder="github"
-             value={github}
-             onChange={ev => setGithub(ev.target.value)}/>
+          placeholder="email"
+          value={email}
+          onChange={ev => setEmail(ev.target.value)} />
+        <input type="text"
+          placeholder="password"
+          value={password}
+          onChange={ev => setPassword(ev.target.value)} />
+        <input type="text"
+          placeholder="name"
+          value={name}
+          onChange={ev => setName(ev.target.value)} />
+        <input type="text"
+          placeholder="languages"
+          value={languages}
+          onChange={ev => setLanguages(ev.target.value)} />
+        <input type="text"
+          placeholder="github"
+          value={github}
+          onChange={ev => setGithub(ev.target.value)} />
 
-      <button>signup</button>
-    </form>
-   </>
+        <button>signup</button>
+      </form>
+    </>
 
   );
 }

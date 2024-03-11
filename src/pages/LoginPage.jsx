@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext.jsx";
 import SignUpPage from "./SignUpPage.jsx";
 
-const Login = () => {
+
+const LoginPage = () => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -36,7 +37,8 @@ const Login = () => {
   };
 
   if (redirect) {
-    return <Navigate to={'/'} />;
+    // return <Navigate to={'/'} />;
+    navigate("/")
   }
 
   return (
@@ -67,4 +69,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
