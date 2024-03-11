@@ -1,6 +1,8 @@
 import {useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
  function SignUpPage() {
 
@@ -37,8 +39,18 @@ import { useNavigate } from "react-router-dom";
     navigate("/login");
   }
   return (
+ <>
+
+    <div>
+    <NavLink className="text-2xl text-violet-600 block mb-4 hover:text-purple">Home
+
+    </NavLink>
+
+</div>
+    
     <form className="signup" onSubmit={signup}>
       <h1>signup</h1>
+      
       <input type="text"
              placeholder="email"
              value={email}
@@ -62,6 +74,8 @@ import { useNavigate } from "react-router-dom";
 
       <button>signup</button>
     </form>
+   </>
+
   );
 }
 
