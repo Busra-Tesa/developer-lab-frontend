@@ -3,16 +3,20 @@ import React, { useState } from "react";
 import Categories from "../components/categories";
 import axios from 'axios';
 import { AuthContext } from "../AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+
 
 import '../App.css';
 
 function CreatePost() {
   const [title, setTitle] = useState('');
-  // const [author, setAuthor] = useState('');
-  const { currentUser } = React.useContext(AuthContext);
+  const [author, setAuthor] = useState('');
+  // const { currentUser } = React.useContext(AuthContext);
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [redirect, setRedirect] = useState(false);
+
+  const navigate = useNavigate();
 
   function createNewPost(ev) {
 
@@ -20,9 +24,9 @@ function CreatePost() {
 
     const formData = new FormData();
     formData.set('title', title);
-    formData.set('author', currentUser.name);
+    formData.set('author', author);
     //test to check if currentuser is added
-    console.log("Current user is",currentUser);
+    // console.log("Current user is",currentUser);
     formData.set('content', content);
     formData.set('category', category);
 
@@ -37,6 +41,8 @@ function CreatePost() {
       .catch(error => {
         console.error('Error creating post:', error);
       });
+      navigate("/postpage")
+
   }
 
   return (
@@ -50,7 +56,7 @@ function CreatePost() {
       <input
         type="text"
         placeholder="Author"
-        value={currentUser}
+        value={author}
         onChange={(ev) => setAuthor(ev.target.value)}
       />
 

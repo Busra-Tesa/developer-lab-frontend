@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext.jsx";
 import SignUpPage from "./SignUpPage.jsx";
+import HomePage from "./HomePage.jsx";
 
 
 const LoginPage = () => {
@@ -42,6 +43,7 @@ const LoginPage = () => {
   }
 
   return (
+  
     <div className="auth">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
