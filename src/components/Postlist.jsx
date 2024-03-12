@@ -1,5 +1,6 @@
-
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+
 
 function PostList({ posts }) {
   console.log("Posts:", posts); 

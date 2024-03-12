@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PostList from '../components/PostList';
+import PostList from '../components/PostList.jsx';
 
 
 function PostPage() {
