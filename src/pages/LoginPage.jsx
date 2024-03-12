@@ -38,7 +38,7 @@ const LoginPage = () => {
 
   if (redirect) {
     // return <Navigate to={'/'} />;
-    navigate("/")
+    navigate("/dashboard");
   }
 
   return (

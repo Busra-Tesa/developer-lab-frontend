@@ -2,22 +2,27 @@ import React, { useState } from "react";
 
 import Categories from "../components/categories";
 import axios from 'axios';
+import { AuthContext } from "../AuthContext";
 
 import '../App.css';
 
 function CreatePost() {
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
+  // const [author, setAuthor] = useState('');
+  const { currentUser } = React.useContext(AuthContext);
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [redirect, setRedirect] = useState(false);
 
   function createNewPost(ev) {
+
     ev.preventDefault();
 
     const formData = new FormData();
     formData.set('title', title);
-    formData.set('author', author);
+    formData.set('author', currentUser.name);
+    //test to check if currentuser is added
+    console.log("Current user is",currentUser);
     formData.set('content', content);
     formData.set('category', category);
 
@@ -45,7 +50,7 @@ function CreatePost() {
       <input
         type="text"
         placeholder="Author"
-        value={author}
+        value={currentUser}
         onChange={(ev) => setAuthor(ev.target.value)}
       />
 
