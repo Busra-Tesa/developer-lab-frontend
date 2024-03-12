@@ -16,7 +16,8 @@ function SignUpPage() {
     ev.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5005/auth/signup', {
+      // http://localhost:5005/auth/signup'
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, {
         email,
         password,
         name,

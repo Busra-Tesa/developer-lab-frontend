@@ -30,7 +30,7 @@ function CreatePost() {
     formData.set('content', content);
     formData.set('category', category);
 
-    axios.post('http://localhost:5005/post', formData)
+    axios.post(`${import.meta.env.VITE_API_URL}/post`, formData)
       .then(response => {
         if (response.data.success) {
           setRedirect(true);

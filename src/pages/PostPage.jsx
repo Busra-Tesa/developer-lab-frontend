@@ -11,7 +11,9 @@ function PostPage() {
   useEffect(() => {
     const fetchRecentPosts = async () => {
         try {
-          const res = await axios.get('http://localhost:5005/post');
+          // http://localhost:5005/post'
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/post`);
+
           const data = res.data;
           
           if (!data || data.length === 0) {
