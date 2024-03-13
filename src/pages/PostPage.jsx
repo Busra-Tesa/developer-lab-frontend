@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PostList from '../components/PostList';
-
+import List from '../components/List';
+// import CreatePost from '../components/CreatePost';
 
 
 
@@ -9,6 +9,7 @@ function PostPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [recentPosts, setRecentPosts] = useState([]);
+
 
   useEffect(() => {
     const fetchRecentPosts = async () => {
@@ -36,6 +37,11 @@ function PostPage() {
       fetchRecentPosts();
   }, []);
 
+  // logic for create new post from createpost page
+
+  const handleCreatePost = (newPost) => {
+    setRecentPosts([newPost, ...recentPosts]);
+  };
 
   if (loading) {
     return (
@@ -56,7 +62,8 @@ function PostPage() {
   return (
     
     <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
-      <PostList posts={recentPosts} />
+      {/* <CreatePost onCreatePost={handleCreatePost} /> */}
+      <List posts={recentPosts} />
       {/* handleUpdate={handleUpdate} handleDelete={handleDelete}  */}
      
     </main>
