@@ -87,7 +87,8 @@ function PostPage() {
   return (
     
     <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
-      <PostList posts={recentPosts} handleUpdate={handleUpdate} handleDelete={handleDelete} />
+      <PostList posts={recentPosts} />
+      {/* handleUpdate={handleUpdate} handleDelete={handleDelete}  */}
      
     </main>
   );

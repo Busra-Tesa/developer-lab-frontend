@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import Comments from "../components/Comments"
 import Header from '../components/Header';
-import UpdatePost from "../components/UpdatePost";
-import DeletePost from "../components/DeletePost";
+// import UpdatePost from "../components/UpdatePost";
+// import DeletePost from "../components/DeletePost";
 
 function PostList({ posts}) {
 
