@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext.jsx";
 import SignUpPage from "./SignUpPage.jsx";
 import HomePage from "./HomePage.jsx";
+// added
+import { Navigate } from "react-router-dom";
 
 
 const LoginPage = () => {
@@ -22,25 +24,40 @@ const LoginPage = () => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await login(inputs);
+  //     if (response.ok) {
+  //       const userInfo = await response.json();
+  //       setRedirect(true);
+  //     } else {
+  //       setError('Wrong credentials');
+  //     }
+  //   } catch (err) {
+  //     setError(err.response.data);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await login(inputs);
-      if (response.ok) {
-        const userInfo = await response.json();
+      if (response.status === 200) {
         setRedirect(true);
       } else {
         setError('Wrong credentials');
       }
     } catch (err) {
-      setError(err.response.data);
+      setError(err.message || 'An error occurred while logging in.');
     }
   };
 
   if (redirect) {
-    // return <Navigate to={'/'} />;
-    navigate("/dashboard");
+     return <Navigate to="/dashboard" />;
   }
+
+
 
   return (
   
@@ -70,5 +87,6 @@ const LoginPage = () => {
     </div>
   );
 };
+
 
 export default LoginPage;

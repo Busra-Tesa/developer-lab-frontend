@@ -11,7 +11,8 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (inputs) => {
     try {
-      const res = await axios.post("http://localhost:5005/auth/login", inputs);
+      // "http://localhost:5005/auth/login"
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, inputs);
       setCurrentUser(res.data);
       return res; 
     } catch (err) {

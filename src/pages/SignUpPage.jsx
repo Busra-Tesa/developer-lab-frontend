@@ -24,13 +24,16 @@ function SignUpPage() {
         languages,
         github,
       })
+      navigate("/login");
 
     } catch (error) {
       console.error('Error during signup:', error);
       alert('An error occurred during signup');
     }
-    navigate("/login");
+  
   }
+
+
   return (
     <>
 
