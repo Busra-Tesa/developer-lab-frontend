@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
-import Comments from "../components/Comments"
-import Header from '../components/Header';
+import Comments from "./Comments"
+import Header from './Header';
 // import UpdatePost from "../components/UpdatePost";
 // import DeletePost from "../components/DeletePost";
 
-function PostList({ posts}) {
+function List({ posts}) {
 
 
   return (
@@ -82,4 +82,4 @@ function PostList({ posts}) {
     </>
   );
 }
-export default PostList;
+export default List;
