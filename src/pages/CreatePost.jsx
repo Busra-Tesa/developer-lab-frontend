@@ -3,47 +3,45 @@
 import React, { useState, useContext } from "react";
 import axios from 'axios';
 import { AuthContext } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
+//  we might need this for later import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
-
-const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const navigate = useNavigate();
+  //  we might need this later const navigate = useNavigate();
 
-
-  console.log (currentUser);
   function createNewPost(ev) {
     ev.preventDefault();
-
   
-    
-        
-        const formData = new FormData();
-        formData.set('title', title);
-        formData.set('author', currentUser._id); // Assuming _id is the user ID
-        formData.set('content', content);
-        formData.set('category', category);
-          console.log(formData);
-                  axios.post(`${import.meta.env.VITE_API_URL}/post`, formData)
-          .then(response => {
-            if (response.data.success) {
-              setRedirect(true);
-            } else {
-              console.error('Post creation failed:', response.data.message);
-            }
-          })
-          .catch(error => {
-            console.error('Error creating post:', error);
-          })
+    if (!currentUser || !currentUser._id) {
+      console.error("User not authenticated or user ID not available.");
+      console.log("Id", currentUser?._id);
+      return;
+    }
+  
+    const postData = {
+      title: title,
+      content: content,
+      author: currentUser._id,
+      category: category
+    };
+  
+    axios.post(`${import.meta.env.VITE_API_URL}/post`, postData)
+      .then(response => {
+        if (response.data.success) {
+          setRedirect(true);
+        } else {
+          console.error('Post creation failed:', response.data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error creating post:', error);
+      });
+  }
 
-       // navigate('/post?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&content=${encodeURIComponent(content)}&category=${encodeURIComponent(category)}');
-       }
-      
- 
   return (
     <form className="create-post" onSubmit={createNewPost}>
       <input
@@ -52,7 +50,13 @@ const { currentUser } = useContext(AuthContext);
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
-      {/* Author input is removed since it's now taken from currentUser */}
+     
+      <input
+        type="text"
+        placeholder="Author"
+        value={currentUser?._id} 
+        disabled 
+      />
       <textarea
         placeholder="Content"
         value={content}
@@ -67,6 +71,7 @@ const { currentUser } = useContext(AuthContext);
       <button style={{ marginTop: '5px' }}>Create post</button>
     </form>
   );
+}
 
- }
+
 export default CreatePost;

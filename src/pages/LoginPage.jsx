@@ -24,21 +24,6 @@ const LoginPage = () => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await login(inputs);
-  //     if (response.ok) {
-  //       const userInfo = await response.json();
-  //       setRedirect(true);
-  //     } else {
-  //       setError('Wrong credentials');
-  //     }
-  //   } catch (err) {
-  //     setError(err.response.data);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
