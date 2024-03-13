@@ -45,7 +45,7 @@ function CreatePost({ updatePost, deletePost }) {
       .catch(error => {
         console.error('Error creating post:', error);
       });
-      navigate(`/postpage?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&content=${encodeURIComponent(content)}&category=${encodeURIComponent(category)}`);
+      navigate(`/post?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&content=${encodeURIComponent(content)}&category=${encodeURIComponent(category)}`);
   }
 
   return (
@@ -65,7 +65,7 @@ function CreatePost({ updatePost, deletePost }) {
         placeholder="Author"
         value={author}
         onChange={(ev) => setAuthor(ev.target.value)}
-        disabled // Disable user input for the author field
+        disabled 
       />
       <textarea
         placeholder="Content"
