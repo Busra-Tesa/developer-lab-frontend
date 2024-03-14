@@ -12,7 +12,7 @@ function CreatePost() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [redirect, setRedirect] = useState(false);
-  //  we might need this later const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function createNewPost(ev) {
     ev.preventDefault();
@@ -38,10 +38,12 @@ function CreatePost() {
         } else {
           console.error('Post creation failed: Response data is empty');
         }
+        navigate("/post");
       })
       .catch(error => {
         console.error('Error creating post:', error);
       });
+
 
   }
 
@@ -65,14 +67,19 @@ function CreatePost() {
         value={content}
         onChange={(ev) => setContent(ev.target.value)}
       />
-      <input
-        type="text"
-        placeholder="Category"
+    <select
         value={category}
         onChange={(ev) => setCategory(ev.target.value)}
-      />
+      >
+        <option value="">Select a category</option>
+        <option value="Javascript">Javascript</option>
+        <option value="CSS">CSS</option>
+        <option value="React">React</option>
+        <option value="HTML">HTML</option>
+      </select>
       <button style={{ marginTop: '5px' }}>Create post</button>
     </form>
+    
   );
 }
 

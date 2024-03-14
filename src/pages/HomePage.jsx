@@ -5,6 +5,7 @@ import SignUpPage from "./SignUpPage";
 import IsAnon from "../components/IsAnon";
 import { AuthContext } from "../AuthContext";
 import { useContext } from "react";
+import AboutPage from "./AboutPage";
 
 function HomePage() {
 
