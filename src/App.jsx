@@ -15,13 +15,14 @@ import IsPrivate from './components/IsPrivate.jsx';
 
 
 import './App.css'
+import Header from './components/Header.jsx';
 
 function App() {
   
 
   return (
     <>
-
+<Header/>
       <Routes>
 
         <Route path="/" element={<HomePage />}>HomePage</Route>

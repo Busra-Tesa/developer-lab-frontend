@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 //  we might need this for later import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -17,16 +17,16 @@ function CreatePost() {
   function createNewPost(ev) {
     ev.preventDefault();
   
-    if (!currentUser || !currentUser._id) {
+    if (!user || !user._id) {
       console.error("User not authenticated or user ID not available.");
-      console.log("Id", currentUser?._id);
+      console.log("Id", user?._id);
       return;
     }
   
     const postData = {
       title: title,
       content: content,
-      author: currentUser._id,
+      author: user._id,
       category: category
     };
   
@@ -57,7 +57,7 @@ function CreatePost() {
       <input
         type="text"
         placeholder="Author"
-        value={currentUser?._id} 
+        value={user?._id} 
         disabled 
       />
       <textarea

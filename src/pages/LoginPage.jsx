@@ -37,7 +37,7 @@ function LoginPage(props) {
         // Verify the token by sending a request 
         // to the server's JWT validation endpoint. 
         authenticateUser();                     // <== ADD
-       
+        navigate('/dashboard');
       })
       .catch((error) => {
         // const errorDescription = error.response.data.message;
@@ -45,7 +45,7 @@ function LoginPage(props) {
         // setErrorMessage();
         console.log("error:", error);
       })
-      navigate('/dashboard');
+     
   };
   
   return (
