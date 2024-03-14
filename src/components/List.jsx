@@ -10,15 +10,19 @@ function List({ posts }) {
   const [editMode, setEditMode] = useState(null);
   const [editedContent, setEditedContent] = useState("");
   const [updatedPosts, setUpdatedPosts] = useState([]);
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
+
+  const token = localStorage.getItem("authToken");
   useEffect(() => {
     fetchPosts();
   }, []);
 
   const fetchPosts = () => {
+    
     axios.get(`${import.meta.env.VITE_API_URL}/post`)
       .then(response => {
+        console.log("Res data:",response.data);
         setUpdatedPosts(response.data);
       })
       .catch(error => {
@@ -54,37 +58,31 @@ function List({ posts }) {
   };
 
   const handleCreateComment = (postId, commentText) => { 
-    if (currentUser && currentUser._id) {
+     
       const payload = {
         content: commentText,
-        // author: authorId, 
         postId: postId,
         favorite: false 
       };
-console.log("Payload", payload);
-      axios.post(`${import.meta.env.VITE_API_URL}/comment`, payload)
+      console.log("Payload", payload);
+      axios.post(`${import.meta.env.VITE_API_URL}/comment`, payload,{ headers: { Authorization: `Bearer ${token}`} })
         .then(response => {
-          const newComment = response.data;
-            console.log("Payload", payload);
-          setUpdatedPosts(prevPosts => {
-            return prevPosts.map(post => {
-              if (post._id === postId) {
-                return {
-                  ...post,
-                  comments: [...post.comments, newComment]
-                };
-              }
-              return post;
-            });
-          });
-          console.log("New comment added:", newComment);
-        })
+          // const newComment = response.data;
+          fetchPosts();
+          
+          
+          // setUpdatedPosts(prevPosts => {
+          //   return prevPosts.map(post => {
+          //     if (post._id === postId) {
+          //       return {
+          //         ...post,
+          //         comments: [...post.comments, newComment]
+                }
+                )
         .catch(error => {
           console.error("Error creating comment:", error);
         });
-    } else {
-      console.error("User not authenticated or missing _id");
-    }
+    
   };
 
   return (
@@ -95,13 +93,11 @@ console.log("Payload", payload);
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {updatedPosts.map((post) => (
               <div key={post._id} className="text-sm leading-6">
-
                 <div className="relative group">
-
                   <div className="relative p-6 space-y-6 leading-none rounded-lg bg-slate-800 ring-1 ring-gray-900/5">
                     <div className="flex items-center space-x-4">
                       <div className="w-12 h-12 flex items-center justify-center bg-center bg-cover border rounded-full text-white">
-                        {post.author.name.charAt(0).toUpperCase()}
+                        {/* {post?.author?.name.charAt(0).toUpperCase()} */}
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-white">
@@ -132,9 +128,6 @@ console.log("Payload", payload);
                       </>
                     ) : (
                       <>
-
-
-
                         <p className="text-md text-gray-300 leading-normal">{post.content}</p>
                         <div className="flex justify-between">
                           <FaTrashAlt
@@ -152,18 +145,28 @@ console.log("Payload", payload);
                       </>
                     )}
                   </div>
-                  <Comments comments={post.comments} onCreateComment={(commentText) => handleCreateComment(post._id, commentText)} />
+                 
+                  <h3 className="text-lg font-semibold text-white mt-4">Comments</h3>
+                            
+                                {/* comments form */}
+
+                  <Comments 
+                    comments={post.comments} 
+                    postId={post._id}  
+                    handleCreateComment={handleCreateComment} 
+                  />
+
+                  {/* Comment form  */}
+
+                  
                 </div>
               </div>
             ))}
           </div>
-
         </div>
-
       </section>
     </>
   );
-
 }
 
 export default List;
