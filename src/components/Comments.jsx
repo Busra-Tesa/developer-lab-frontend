@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react"; 
+import { AuthContext } from "../AuthContext"; 
 
-function Comments({ comments }) {
+function Comments({ postId, comments, onCreateComment }) {
   const [comment, setComment] = useState('');
+  // const { currentUser } = useContext(AuthContext); 
 
   const handleAddComment = () => {
- 
+    if (comment.trim() !== '') {
+     
+      onCreateComment(postId, comment); 
+      setComment('');
+    }
   };
 
   return (
@@ -19,7 +25,7 @@ function Comments({ comments }) {
      
       <div>
         {comments.map((comment, index) => (
-          <div key={index}>{comment}</div>
+          <div key={index}>{comment.content}</div> 
         ))}
       </div>
     </div>

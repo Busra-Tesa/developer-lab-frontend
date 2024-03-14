@@ -1,67 +1,70 @@
+
+import { useState, useContext } from "react";
 import axios from "axios";
-import React, { useState } from "react";
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../AuthContext.jsx";
+import { AuthContext } from "../AuthContext";
 import SignUpPage from "./SignUpPage.jsx";
-import HomePage from "./HomePage.jsx";
-// added
-import { Navigate } from "react-router-dom";
+
+const API_URL = "http://localhost:5005";
 
 
-const LoginPage = () => {
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
+function LoginPage(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
   const [err, setError] = useState(null);
-  const [redirect, setRedirect] = useState(false);
-
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await login(inputs);
-      if (response.status === 200) {
-        setRedirect(true);
-      } else {
-        setError('Wrong credentials');
-      }
-    } catch (err) {
-      setError(err.message || 'An error occurred while logging in.');
-    }
-  };
-
-  if (redirect) {
-     return <Navigate to="/dashboard" />;
-  }
-
-
-
-  return (
   
+  /*  UPDATE - get authenticateUser from the context */
+  const { storeToken, authenticateUser } = useContext(AuthContext);
+
+  
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
+
+  
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    const requestBody = { email, password };
+
+    axios.post(`${API_URL}/auth/login`, requestBody)
+      .then((response) => {
+        console.log('JWT token', response.data.authToken );
+      
+        // Save the token in the localStorage.      
+        storeToken(response.data.authToken);
+        
+        // Verify the token by sending a request 
+        // to the server's JWT validation endpoint. 
+        authenticateUser();                     // <== ADD
+       
+      })
+      .catch((error) => {
+        // const errorDescription = error.response.data.message;
+        
+        // setErrorMessage();
+        console.log("error:", error);
+      })
+      navigate('/dashboard');
+  };
+  
+  return (
     <div className="auth">
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLoginSubmit }>
         <input
           required
           type="text"
           placeholder="email"
           name="email"
-          onChange={handleChange}
+          onChange={handleEmail}
         />
         <input
           required
           type="password"
           placeholder="password"
           name="password"
-          onChange={handleChange}
+          onChange={handlePassword}
         />
         <button type="submit">Login</button>
         {err && <p>{err}</p>}
@@ -70,8 +73,7 @@ const LoginPage = () => {
         </span>
       </form>
     </div>
-  );
-};
-
+  )
+}
 
 export default LoginPage;

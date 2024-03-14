@@ -3,11 +3,14 @@ import { FaTrashAlt, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
 import Comments from "./Comments";
 import Header from './Header';
 import axios from "axios";
+import { AuthContext } from "../AuthContext";
+import { useContext } from "react";
 
 function List({ posts }) {
   const [editMode, setEditMode] = useState(null);
   const [editedContent, setEditedContent] = useState("");
   const [updatedPosts, setUpdatedPosts] = useState([]);
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     fetchPosts();
@@ -21,9 +24,6 @@ function List({ posts }) {
       .catch(error => {
         console.log("Error while trying to fetch the posts:", error);
       });
-  };
-  const setPosts = (newPosts) => {
-    setUpdatedPosts(newPosts);
   };
 
   const handleSaveEdit = (postId) => {
@@ -53,6 +53,40 @@ function List({ posts }) {
       });
   };
 
+  const handleCreateComment = (postId, commentText) => { 
+    if (currentUser && currentUser._id) {
+      const payload = {
+        content: commentText,
+        // author: authorId, 
+        postId: postId,
+        favorite: false 
+      };
+console.log("Payload", payload);
+      axios.post(`${import.meta.env.VITE_API_URL}/comment`, payload)
+        .then(response => {
+          const newComment = response.data;
+            console.log("Payload", payload);
+          setUpdatedPosts(prevPosts => {
+            return prevPosts.map(post => {
+              if (post._id === postId) {
+                return {
+                  ...post,
+                  comments: [...post.comments, newComment]
+                };
+              }
+              return post;
+            });
+          });
+          console.log("New comment added:", newComment);
+        })
+        .catch(error => {
+          console.error("Error creating comment:", error);
+        });
+    } else {
+      console.error("User not authenticated or missing _id");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -61,7 +95,9 @@ function List({ posts }) {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {updatedPosts.map((post) => (
               <div key={post._id} className="text-sm leading-6">
+
                 <div className="relative group">
+
                   <div className="relative p-6 space-y-6 leading-none rounded-lg bg-slate-800 ring-1 ring-gray-900/5">
                     <div className="flex items-center space-x-4">
                       <div className="w-12 h-12 flex items-center justify-center bg-center bg-cover border rounded-full text-white">
@@ -72,7 +108,7 @@ function List({ posts }) {
                           {post.author.name}
                         </h3>
                         <h4 className="text-white text-md">{post.title}</h4>
-                        <br/>
+                        <br />
                         <p className="text-white text-md">{post.author.email}</p>
                       </div>
                     </div>
@@ -96,6 +132,9 @@ function List({ posts }) {
                       </>
                     ) : (
                       <>
+
+
+
                         <p className="text-md text-gray-300 leading-normal">{post.content}</p>
                         <div className="flex justify-between">
                           <FaTrashAlt
@@ -113,16 +152,18 @@ function List({ posts }) {
                       </>
                     )}
                   </div>
-                  <Comments comments={post.comments} />
+                  <Comments comments={post.comments} onCreateComment={(commentText) => handleCreateComment(post._id, commentText)} />
                 </div>
               </div>
             ))}
           </div>
+
         </div>
+
       </section>
     </>
   );
-}
 
+}
 
 export default List;
