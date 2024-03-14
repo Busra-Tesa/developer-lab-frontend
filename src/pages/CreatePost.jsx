@@ -16,21 +16,21 @@ function CreatePost() {
 
   function createNewPost(ev) {
     ev.preventDefault();
-  
+
     if (!user || !user._id) {
       console.error("User not authenticated or user ID not available.");
       console.log("Id", user?._id);
       return;
     }
-  
+
     const postData = {
       title: title,
       content: content,
       author: user._id,
       category: category
     };
-  
-      axios.post(`${import.meta.env.VITE_API_URL}/post`, postData)
+
+    axios.post(`${import.meta.env.VITE_API_URL}/post`, postData)
       .then(response => {
         if (response.data) {
           console.log('Post created successfully:', response.data);
@@ -54,32 +54,45 @@ function CreatePost() {
         placeholder="Title"
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
+        required 
+        title="Please add a Title for your post"
       />
-     
-      <input
+
+      {/* <input
         type="text"
         placeholder="Author"
-        value={user?._id} 
-        disabled 
-      />
+        // value={user?._id}
+        disabled
+      /> */}
       <textarea
         placeholder="Content"
         value={content}
         onChange={(ev) => setContent(ev.target.value)}
+        required 
+        title="Content can not be left empty"
       />
-    <select
+      <select
         value={category}
         onChange={(ev) => setCategory(ev.target.value)}
+        required 
+        title="You must choose a category"
       >
         <option value="">Select a category</option>
         <option value="Javascript">Javascript</option>
         <option value="CSS">CSS</option>
         <option value="React">React</option>
         <option value="HTML">HTML</option>
+        required 
+       
       </select>
-      <button style={{ marginTop: '5px' }}>Create post</button>
+      <button
+        type="submit"
+        className="block mx-auto mt-4 px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700"
+      >
+        Create
+      </button>
     </form>
-    
+
   );
 }
 

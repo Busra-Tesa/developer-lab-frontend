@@ -26,7 +26,7 @@
     form.signup button {
       width: 100%;
       padding: 10px;
-      background-color: #4caf50;
+      background-color:#1a202c;
       color: white;
       border: none;
       border-radius: 5px;
@@ -34,7 +34,7 @@
     }
     
     form.signup button:hover {
-      background-color: #45a049;
+      background-color: #1a202c;
     }
     
     .auth {
@@ -68,7 +68,7 @@
     .auth button {
       padding: 10px;
       font-size: 16px;
-      background-color: #4caf50;
+      background-color: #1a202c;
       color: #fff;
       cursor: pointer;
       border: none;
@@ -76,7 +76,7 @@
     }
     
     .auth button:hover {
-      background-color: #45a049;
+      background-color: #1a202c;
     }
     
     .auth p {
@@ -90,7 +90,7 @@
     }
     
     .auth span a {
-      color: #4caf50;
+      color: #1a202c;
       text-decoration: none;
       font-weight: bold;
     }
@@ -115,7 +115,7 @@
     }
     
     button {
-      background-color: #4caf50;
+      background-color:#1a202c;
       color: white;
       padding: 10px 15px;
       border: none;
@@ -124,7 +124,7 @@
     }
     
     button:hover {
-      background-color: #45a049;
+      background-color:#1a202c;
     }
     
 
@@ -150,7 +150,7 @@ form.create-post button {
   justify-content: center;
   align-items: center;
 
-  background-color: #4caf50;
+  background-color: #1a202c;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -159,6 +159,7 @@ form.create-post button {
 }
 
 form.create-post button:hover {
-  background-color: #45a049;
-}
+  background-color:   #808080;
+  color: #000;
 
+}
