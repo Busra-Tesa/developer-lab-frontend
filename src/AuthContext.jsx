@@ -1,40 +1,88 @@
+// /auth.context.jsx
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+const API_URL = "http://localhost:5005";
 
-export const AuthContext = createContext();
+const AuthContext = React.createContext();
 
-export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+function AuthProviderWrapper(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
+  
+  const storeToken = (token) => {
+    localStorage.setItem('authToken', token);
+  }  
 
-  // this useEffect saved my code
-  useEffect(() => {
+  
+  const authenticateUser = () => {           //  <==  ADD  
+    // Get the stored token from the localStorage
+    const storedToken = localStorage.getItem('authToken');
     
-    const userData = localStorage.getItem("currentUser");
-    if (userData) {
-      setCurrentUser(JSON.parse(userData));
-    }
-  }, []);
+    // If the token exists in the localStorage
+    if (storedToken) {
+      // We must send the JWT token in the request's "Authorization" Headers
+      axios.get(
+        `${API_URL}/auth/verify`, 
+        { headers: { Authorization: `Bearer ${storedToken}`} }
+      )
+      .then((response) => {
+        // If the server verifies that the JWT token is valid  
+        const user = response.data;
+        console.log('Verify user ıd:', user);
 
-  const login = async (inputs) => {
-    console.log(inputs);
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, inputs);
-      console.log(res);
-      localStorage.setItem("token", res.data.authToken);
-      const user = await axios.get(`${import.meta.env.VITE_API_URL}/auth/verify`, { headers: { Authorization: `Bearer ${res.data.authToken}` } });
-      console.log("User data", user.data);
-      setCurrentUser(user.data);
-      localStorage.setItem("currentUser", JSON.stringify(user.data)); 
-      return res;
-    } catch (err) {
-      throw err;
-    }
-  };
+       // Update state variables        
+        setIsLoggedIn(true);
+        setIsLoading(false);
+        setUser(user);        
+      })
+      .catch((error) => {
+        // If the server sends an error response (invalid token) 
+        // Update state variables         
+        setIsLoggedIn(false);
+        setIsLoading(false);
+        setUser(null);        
+      });      
+    } else {
+      // If the token is not available (or is removed)
+        setIsLoggedIn(false);
+        setIsLoading(false);
+        setUser(null);      
+    }   
+  }
+  
+  
+   const removeToken = () => {                    // <== ADD
+    // Upon logout, remove the token from the localStorage
+    localStorage.removeItem("authToken");
+  }
 
-  return (
-    <AuthContext.Provider value={{ currentUser, login }}>
-      {children}
+  const logOutUser = () => {                   // <== ADD    
+    // To log out the user, remove the token
+    removeToken();
+    // and update the state variables    
+    authenticateUser();
+  }  
+  
+
+  useEffect(() => {                                    
+    authenticateUser();                   //  <==  ADD
+   }, []);
+  return (                                                   
+    <AuthContext.Provider 
+      value={{ 
+        isLoggedIn,
+        isLoading,
+        user,
+        storeToken,
+        authenticateUser         
+      }}
+    >
+      {props.children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
+
+export { AuthProviderWrapper, AuthContext };

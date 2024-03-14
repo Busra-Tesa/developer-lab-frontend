@@ -10,6 +10,8 @@ import LoginPage from './pages/LoginPage';
 import CreatePost from './pages/CreatePost.jsx'
 import { Route,Routes } from 'react-router-dom'
 import DashboardPage from './pages/DashboardPage';
+import IsAnon from './components/IsAnon.jsx';
+import IsPrivate from './components/IsPrivate.jsx';
 
 
 import './App.css'
@@ -25,8 +27,8 @@ function App() {
         <Route path="/" element={<HomePage />}>HomePage</Route>
         <Route path="/login" element={<LoginPage />}>LoginPage</Route>
         <Route path="/signup" element={<SignUpPage />}>SignUp</Route>
-        <Route path="/post" element={<PostPage />}>PostPage</Route>
-        <Route path="/dashboard" element={<DashboardPage />}>DashboardPage</Route>
+        <Route path="/post" element={<IsPrivate><PostPage /></IsPrivate>}>PostPage</Route>
+        <Route path="/dashboard" element={<IsPrivate><DashboardPage /></IsPrivate>}>DashboardPage</Route>
         
         {/* <Route path="/post/:postId" element={<PostDetails />} >PostDetails</Route> */}
         
