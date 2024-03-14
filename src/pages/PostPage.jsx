@@ -39,9 +39,9 @@ function PostPage() {
 
   // logic for create new post from createpost page
 
-  const handleCreatePost = (newPost) => {
-    setRecentPosts([newPost, ...recentPosts]);
-  };
+  // const handleCreatePost = (newPost) => {
+  //   setRecentPosts([newPost, ...recentPosts]);
+  // };
 
   if (loading) {
     return (
@@ -62,9 +62,9 @@ function PostPage() {
   return (
     
     <main className='p-3 flex flex-col mx-auto min-h-screen'>
-      {/* <CreatePost onCreatePost={handleCreatePost} /> */}
+      {/* <CreatePost onCreatePost={handleCreatePost} we don't need it /> */}
       <List posts={recentPosts} />
-      {/* handleUpdate={handleUpdate} handleDelete={handleDelete}  */}
+      {/* // handleUpdate={handleUpdate} handleDelete={handleDelete} nor this until now  */}
      
     </main>
   );

@@ -3,6 +3,7 @@
 import React, { useState, useContext } from "react";
 import axios from 'axios';
 import { AuthContext } from "../AuthContext";
+import { NavLink, useNavigate } from "react-router-dom";
 //  we might need this for later import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
@@ -29,17 +30,19 @@ function CreatePost() {
       category: category
     };
   
-    axios.post(`${import.meta.env.VITE_API_URL}/post`, postData)
+      axios.post(`${import.meta.env.VITE_API_URL}/post`, postData)
       .then(response => {
-        if (response.data.success) {
+        if (response.data) {
+          console.log('Post created successfully:', response.data);
           setRedirect(true);
         } else {
-          console.error('Post creation failed:', response.data.message);
+          console.error('Post creation failed: Response data is empty');
         }
       })
       .catch(error => {
         console.error('Error creating post:', error);
       });
+
   }
 
   return (
