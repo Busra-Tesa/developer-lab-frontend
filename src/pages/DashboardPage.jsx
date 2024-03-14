@@ -3,12 +3,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import PostPage from "./PostPage";
 
-
-// import Navbar from "components/Navbar.js";
-// import Sidebar from "components/Sidebar.js";
-// import LineChart from "components/LineChart.js";
-// import BarChart from "components/BarChart.js";
-
 function DashboardPage() {
 
 
