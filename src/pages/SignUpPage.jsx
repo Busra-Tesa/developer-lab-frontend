@@ -12,6 +12,8 @@ function SignUpPage() {
   const [github, setGithub] = useState('');
   const navigate = useNavigate();
 
+  // const token = localStorage.getItem("authToken");
+
   async function signup(ev) {
     ev.preventDefault();
 

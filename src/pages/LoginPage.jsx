@@ -18,7 +18,7 @@ function LoginPage(props) {
   /*  UPDATE - get authenticateUser from the context */
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
-  
+
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
@@ -36,16 +36,15 @@ function LoginPage(props) {
         
         // Verify the token by sending a request 
         // to the server's JWT validation endpoint. 
-        authenticateUser();                     // <== ADD
-        navigate('/dashboard');
+        authenticateUser();                    
+       
       })
       .catch((error) => {
         // const errorDescription = error.response.data.message;
-        
         // setErrorMessage();
         console.log("error:", error);
       })
-     
+      navigate('/dashboard');
   };
   
   return (

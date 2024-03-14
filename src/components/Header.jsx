@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from "../AuthContext";
 import { useContext } from "react";
 import AboutPage from '../pages/AboutPage'
+import { useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
+    const navigate = useNavigate();
     const { 
         isLoggedIn,
         user,                  
