@@ -13,6 +13,7 @@ import DashboardPage from './pages/DashboardPage';
 import IsAnon from './components/IsAnon.jsx';
 import IsPrivate from './components/IsPrivate.jsx';
 import AboutPage from './pages/AboutPage.jsx'
+import ArticlePage from './pages/ArticlePage';
 
 
 import './App.css'
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<LoginPage />}>LoginPage</Route>
         <Route path="/signup" element={<SignUpPage />}>SignUp</Route>
         <Route path="/about" element={<AboutPage />}>AboutPage</Route>
+        <Route path="/article" element={<ArticlePage />}>ArticlePage</Route>
         <Route path="/post" element={<IsPrivate><PostPage /></IsPrivate>}>PostPage</Route>
         <Route path="/dashboard" element={<IsPrivate><DashboardPage /></IsPrivate>}>DashboardPage</Route>
         

@@ -49,22 +49,27 @@ function SignUpPage() {
         <input type="text"
           placeholder="email"
           value={email}
-          onChange={ev => setEmail(ev.target.value)} />
+          onChange={ev => setEmail(ev.target.value)}
+          required />
         <input type="text"
           placeholder="password"
           value={password}
+          required
           onChange={ev => setPassword(ev.target.value)} />
         <input type="text"
           placeholder="name"
           value={name}
+          required
           onChange={ev => setName(ev.target.value)} />
         <input type="text"
           placeholder="languages"
           value={languages}
+          required
           onChange={ev => setLanguages(ev.target.value)} />
         <input type="text"
           placeholder="github"
           value={github}
+          required
           onChange={ev => setGithub(ev.target.value)} />
 
         <button>signup</button>

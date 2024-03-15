@@ -61,7 +61,7 @@ function PostPage() {
  
   return (
     
-    <main className='p-3 flex flex-col mx-auto min-h-screen'>
+    <main className='flex flex-col mx-auto min-h-screen'>
       {/* <CreatePost onCreatePost={handleCreatePost} we don't need it /> */}
       <List posts={recentPosts} />
       {/* // handleUpdate={handleUpdate} handleDelete={handleDelete} nor this until now  */}
