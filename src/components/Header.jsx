@@ -1,10 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { AuthContext } from "../AuthContext";
 import { useContext } from "react";
 import AboutPage from '../pages/AboutPage'
 import { useNavigate } from 'react-router-dom';
-
 
 const Header = () => {
     const navigate = useNavigate();
@@ -22,10 +21,10 @@ const Header = () => {
 <header>
 <nav className="bg-black border-gray-200   dark:bg-gray-800 w-full">
     <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-        <a href="#" className="flex items-center">
-            <img src="src/assets/images/logo1.jpg" className="mr-3 h-6 sm:h-9" alt="DevLab Logo" />
+        <NavLink href="#" className="flex items-center">
+            {/* <img src="src/assets/images/logo1.jpg" className="mr-3 h-6 sm:h-9" alt="DevLab Logo" /> */}
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Developer Lab</span>
-        </a>
+        </NavLink>
         <div className="flex items-center lg:order-2">
         {isLoggedIn || (
     <>
@@ -90,26 +89,20 @@ const Header = () => {
                 </>
                 )} 
                 <li>
-                    <a href="article" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 
+                    <NavLink to="/article" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 
                     lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white 
                     dark:hover:bg-gray-700 
                     dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
-                        Articles</a>
+                        Articles</NavLink>
                 </li>
                 <li>
-                    <a href="/about" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 
+                    <NavLink to="/about" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 
                     lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 
                     lg:dark:hover:text-white dark:hover:bg-gray-700 
                     dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
-                        About us</a>
+                        About us</NavLink>
                 </li>
-                <li>
-                    {/* <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 
-                    hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 
-                    lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 
-                    dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
-                        Team</a> */}
-                </li>
+             
                 
             </ul>
         </div>
