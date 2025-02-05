@@ -52,7 +52,7 @@ function AboutPage() {
                         <h4 className="pb-4 font-semibold m-5 text-white">Busra & Tesa Co - Owners</h4>
                         <div className="flex flex-row gap-10">
                             <a
-                                href="https://github.com/busrasarikaya98"
+                                href="https://github.com/busrakocer123"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center font-semibold text-white hover:text-blue-400 transition-colors duration-200"
@@ -63,7 +63,7 @@ function AboutPage() {
                                 </svg>
                             </a>
                             <a
-                                href="https://github.com/teresafranxman97"
+                                href="https://github.com/TesaMusa"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center font-semibold text-white hover:text-blue-400 transition-colors duration-200"
