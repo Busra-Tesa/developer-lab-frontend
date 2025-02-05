@@ -32,50 +32,83 @@ function SignUpPage() {
       console.error('Error during signup:', error);
       alert('An error occurred during signup');
     }
-  
+
   }
 
 
   return (
-    <>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="auth max-w-md w-full p-6 bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+        <h1 className="text-4xl font-bold text-center mb-8 px-4 text-white">
+          Sign Up
+        </h1>
+        <form onSubmit={signup} className="space-y-4">
+          <input
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={ev => setEmail(ev.target.value)}
+            required
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            required
+            onChange={ev => setPassword(ev.target.value)}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            placeholder="name"
+            value={name}
+            required
+            onChange={ev => setName(ev.target.value)}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            placeholder="languages"
+            value={languages}
+            required
+            onChange={ev => setLanguages(ev.target.value)}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            placeholder="github"
+            value={github}
+            required
+            onChange={ev => setGithub(ev.target.value)}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
 
-      <div>
-        <NavLink to="/" className="block py-2 pr-4 pl-3 text-black rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-black" aria-current="page">Home</NavLink>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200"
+          >
+            Sign Up
+          </button>
+
+          <p className="text-center mt-4 text-lg">Already have an account?</p>
+          <div className="flex justify-center gap-6 mt-3">
+            <NavLink
+              to="/login"
+              className="px-6 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-md text-center"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/"
+              className="px-6 py-2 text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors duration-200 shadow-md text-center"
+            >
+              Home
+            </NavLink>
+          </div>
+        </form>
       </div>
-
-      <form className="signup" onSubmit={signup}>
-        <h1>signup</h1>
-
-        <input type="text"
-          placeholder="email"
-          value={email}
-          onChange={ev => setEmail(ev.target.value)}
-          required />
-        <input type="text"
-          placeholder="password"
-          value={password}
-          required
-          onChange={ev => setPassword(ev.target.value)} />
-        <input type="text"
-          placeholder="name"
-          value={name}
-          required
-          onChange={ev => setName(ev.target.value)} />
-        <input type="text"
-          placeholder="languages"
-          value={languages}
-          required
-          onChange={ev => setLanguages(ev.target.value)} />
-        <input type="text"
-          placeholder="github"
-          value={github}
-          required
-          onChange={ev => setGithub(ev.target.value)} />
-
-        <button>signup</button>
-      </form>
-    </>
-
+    </div>
   );
 }
 

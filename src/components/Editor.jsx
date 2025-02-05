@@ -1,6 +1,6 @@
 import ReactQuill from "react-quill";
 
- function Editor({value,onChange}) {
+function Editor({ value, onChange }) {
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -17,11 +17,11 @@ import ReactQuill from "react-quill";
   };
   return (
     <div className="content">
-    <ReactQuill
-      value={value}
-      theme={'snow'}
-      onChange={onChange}
-      modules={modules} />
+      <ReactQuill
+        value={value}
+        theme={'snow'}
+        onChange={onChange}
+        modules={modules} />
     </div>
   );
 }

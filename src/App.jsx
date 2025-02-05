@@ -8,23 +8,23 @@ import HomePage from './pages/HomePage.jsx'
 import LoginPage from './pages/LoginPage';
 // import PostDetails from './components/PostDetails.jsx'
 import CreatePost from './pages/CreatePost.jsx'
-import { Route,Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import DashboardPage from './pages/DashboardPage';
 import IsAnon from './components/IsAnon.jsx';
 import IsPrivate from './components/IsPrivate.jsx';
 import AboutPage from './pages/AboutPage.jsx'
 import ArticlePage from './pages/ArticlePage';
-
+import NotFoundPage from './pages/NotFoundPage';
 
 import './App.css'
 import Header from './components/Header.jsx';
 
 function App() {
-  
+
 
   return (
     <>
-<Header/>
+      <Header />
       <Routes>
 
         <Route path="/" element={<HomePage />}>HomePage</Route>
@@ -34,14 +34,15 @@ function App() {
         <Route path="/article" element={<ArticlePage />}>ArticlePage</Route>
         <Route path="/post" element={<IsPrivate><PostPage /></IsPrivate>}>PostPage</Route>
         <Route path="/dashboard" element={<IsPrivate><DashboardPage /></IsPrivate>}>DashboardPage</Route>
-        
+        <Route path="/*" element={<NotFoundPage />} />
+
         {/* <Route path="/post/:postId" element={<PostDetails />} >PostDetails</Route> */}
-        
+
         <Route path="/create" element={<CreatePost />} />
       </Routes>
     </>
-     
-   
+
+
   );
 }
 
